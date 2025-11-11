@@ -1,44 +1,36 @@
-# Client ePayco
-## EndPoint de las Rutas del servicio de back-end que brinda el acceso a de los datos al cliente
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Opción 1: Se debe crear un archivo .env en la ruta de la raiz del proyecto y copiar las rutas de los siquientes Endpoints de API.
-## Endpoint API
-VITE_API_ADD_USERS=http://localhost:8080/UserManagementAPI/V1/user/add
-VITE_API_GET_USERS=http://localhost:8080/UserManagementAPI/V1/user/get
-VITE_API_ADD_TRANSACTION=http://localhost:8080/UserManagementAPI/V1/transactions/add
-VITE_API_GET_TRANSACTION=http://localhost:8080/UserManagementAPI/V1/transactions/report
-VITE_API_CONFIRMATION_TRANSACTION=http://localhost:8080/UserManagementAPI/V1/transactions/confirmation
-VITE_API_GET_TOKEN=http://localhost:8080/UserManagementAPI/V1/Auth/send-OTP
+## Getting Started
 
-## Opción 2: Puede renombrar el archivo .env.example por .env y con esto entra en utilización este archivo para la creacion de las variables de Entorno de React.js
+First, run the development server:
 
-## Instalación de Librerias Necesarias:
-Para Instalar las librerias necesarias se realiza desde la consola utilizando npm install en la raiz del proyexto.
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-## Proyectos de Back-End
-Se necesita correr el servidor "UserManagementAPI-ePayco" https://github.com/prequena-84/UserManagementAPI-ePayco.git y seguir las intrucciones del microservicio para activar el servidor que interactua entre el cliente y el microservicio de la base de datos de las transacciones.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Se necesita correr el servidor "DatabaseServicesAPI-ePayco" https://github.com/prequena-84/DatabaseServicesAPI-ePayco.git y seguir las intrucciones del microservicio para activar el servidor que interactua con la base de datos de las transacciones. 
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## Ejecución del proyecto
-Se con el siguiente comando en la consola en la Raiz del Proyecto:
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-Developer: npm run dev
-Build: npm run build
-Production: npm run server
+## Learn More
 
-## Compilación
-Para compilar el proyecto se necesita crear una carpeta llamada "build" en el mismo nivel que la carpeta "src", luego se ejecuta el comando npm run build y se creara la carpeta build con los archivos compilados.
+To learn more about Next.js, take a look at the following resources:
 
-Luego podras ejecutar el código de producción con el comando npm run server.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## Personalización de titulos navbar
-Para modificar el enunciados del menu y sub menos de la barrar de navegación se necesitara realizar los cambios en el archivo "config-nav-bar.json" ubicado en la ruta src/config/config-nav-bar.json.
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Integración de nuevo modulos
-Para la integraciaón de nuevo modulo se importa los modulos en el Archivo "App.tsx" y luego se agrega su definición en Archivo Json "config-nav-bar.json" ubicado en la ruta src/config/config-nav-bar.json y tambien se define en la funcion "routerComponents" ya que el Json no tiene la capacidad importar archivos de React.ReactElement, es decir, componente de React, esta funcion se encarga de crear un renderizado mas practico para la escalabilidad y consistencia del proyecto.
+## Deploy on Vercel
 
-## Inicio de la App
-Cuando ejecutes el inicio de la App veras la primera pantalla con las transacciones realizadas si las hay y los menus de navegacion consta de 4 opciones: Inicio, Registro de Usuarios, Registro de Transacciones y confirmación de trasacciones / token.
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-En el Menu del Inicio se visualizaran todas las transacciones realizadas hasta el presente, en el menu de Registro de Usuarios se podra registrar un nuevo usuario, en el menu de Registro de Transacciones se podra registrar una nueva transaccion y en el menu de confirmación de trasacciones / token se podra confirmar una transaccion y generar la solitud de token que se enviara al mail del cliente y luego con ese token podra validar la transacción.
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
