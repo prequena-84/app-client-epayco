@@ -1,17 +1,17 @@
-import type { TUri, TMethod, THeaders, TToken, IFecth } from "./request.data.services.types";
+import type { TUri, TMethod, TToken, THeaders, IFetch } from "./request.data.services.types";
 
 export default async function requestData<TResponse, TRequestBody = TResponse> ( 
     uri: TUri, 
     method: TMethod = 'GET', 
     body?: TRequestBody, 
     token?: TToken,
-):Promise<IFecth<TResponse> | {data:null, message:string}> {
+):Promise<IFetch<TResponse> | {data:null, message:string}> {
     try {
 
         if ( !uri ) throw new Error('URI no encontrada');
         const headers: THeaders = { 'Content-Type':'application/json' };
         if (token) headers["Authorization"] = `Bearer ${token}`;
-        
+     
         const response = await fetch(uri, {
             method,
             headers,
@@ -22,7 +22,7 @@ export default async function requestData<TResponse, TRequestBody = TResponse> (
         if ( !response.ok ) throw new Error(data.message.message || 'Error en la red, datos o la solicitud falló');
 
         return {
-            data,
+            data: data.data,
             message:data.message,
         };
 

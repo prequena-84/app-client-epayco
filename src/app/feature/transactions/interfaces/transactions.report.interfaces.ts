@@ -2,11 +2,11 @@ import type { IUser } from "../../users/interfaces/users.interfaces";
 import type { ITransactions } from "./transactions.interfaces";
 
 interface IReportingTransactions extends ITransactions {
-    users?:IUser;
+    user?:IUser;
 }
 
 interface IDataTransactions {
-    dataTransactions?:IReportingTransactions[];
+    dataTransactions?:IReportingTransactions[] | null;
 }
 
 export type {

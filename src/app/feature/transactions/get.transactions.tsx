@@ -7,20 +7,21 @@ import TableTransactions from "./table.transactions";
 import type { IReportingTransactions } from "./interfaces/transactions.report.interfaces";
 
 const GetTransactions = () => {
-    const [ data, setData ] = useState<IReportingTransactions[]>([]);
+    const [ transactions, setTransactions ] = useState<IReportingTransactions[] | null>(null);
 
     useEffect(() => {
-        const getData = async () => {
-            const response:IReportingTransactions[] = (await requestData<IReportingTransactions[]>(process.env.NEXT_PUBLIC_API_URL_REPORTING ??'',"GET")).data;
-            setData(response);
+        const data = async () => {
+            const data = (await requestData<IReportingTransactions[]>(process.env.NEXT_PUBLIC_API_URL_REPORTING ?? '')).data;
+            setTransactions(data);
+            console.log(data)
         };
 
-        getData();
-    });
+        data();
+    }, []);
 
     return (
         <section className="main-content">
-            <TableTransactions dataTransactions={data}/>
+            <TableTransactions dataTransactions={transactions}/>
         </section>
     )
 };

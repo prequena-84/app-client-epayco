@@ -1,14 +1,13 @@
 'use client'
 
 import React from "react";
-
 import type { IDataTransactions } from "./interfaces/transactions.report.interfaces";
 
 const TableTransactions:React.FC<IDataTransactions> = ({ dataTransactions }) => {
     const data = dataTransactions?.map(transations => {
         return {
-            "Documento": transations.userDocument,
-            "Usuario": transations.users?.name,
+            "Documento": transations.document,
+            "Usuario": transations.user?.name,
             "Id Transaccion": transations.id,
             "Tipo Transaccion": transations.type,
             "Monto": transations.amount,
@@ -28,25 +27,25 @@ const TableTransactions:React.FC<IDataTransactions> = ({ dataTransactions }) => 
                         </tr>
                     </thead>
                     <tbody>
-                        {data.map( (item,index) => (
+                        {data.map( (transactions, index) => (
                             <tr key={`row-${index}`}>
                                 <th key={`document-${index}`} scope="row">
-                                    {item.Documento}
+                                    {transactions.Documento}
                                 </th >
                                 <td key={`users-${index}`}>
-                                    {item.Usuario}
+                                    {transactions.Usuario}
                                 </td>
                                 <td key={`idTransaction-${index}`}>
-                                    {item["Id Transaccion"]}
+                                    {transactions["Id Transaccion"]}
                                 </td>
                                 <td key={`typeTransaction-${index}`}>
-                                    {item["Tipo Transaccion"]}
+                                    {transactions["Tipo Transaccion"]}
                                 </td>
                                 <td key={`amount-${index}`}>
-                                    {item.Monto?.toFixed(2) ?? 0}
+                                    {transactions.Monto ?? 0}
                                 </td>
                                 <td key={`state-${index}`}>
-                                    {item.Estado}
+                                    {transactions.Estado}
                                 </td>
                             </tr>
                         ))}       

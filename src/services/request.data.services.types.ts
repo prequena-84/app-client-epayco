@@ -3,7 +3,7 @@ type TMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH" | "OPTIONS" | "HEAD";
 type THeaders = Record<string, string>;
 type TToken = string;
 
-interface IFecth<T> {
+interface IFetch<T> {
     data: T,
     message: string,
 }
@@ -13,5 +13,5 @@ export type {
     TMethod,
     THeaders,
     TToken,
-    IFecth,
+    IFetch,
 };

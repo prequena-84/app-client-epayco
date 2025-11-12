@@ -1,6 +1,6 @@
 export interface ITransactions {
     id?:string;
-    userDocument?:number;
+    document?:number;
     type?:'recarga'|'pago';
     amount?:number ;
     status?:'pendiente'|'confirmada';

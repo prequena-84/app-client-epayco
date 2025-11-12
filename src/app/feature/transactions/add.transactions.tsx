@@ -14,7 +14,7 @@ import type { IStateTransactions } from "./interfaces/state.transactions.interfa
 const FormAddTransactions: React.FC<IForm> = () => {
 
     const [ transactions, setTransactions ] = useState<IStateTransactions>({
-        userDocument:0,
+        document:0,
         type: 'recarga',
         amount: 0,
         status: 'confirmada',
@@ -42,7 +42,7 @@ const FormAddTransactions: React.FC<IForm> = () => {
 
     const clearForm = () => {
         setTransactions({
-            userDocument:0,
+            document:0,
             type:'recarga',
             amount:0,
             phone:'',
@@ -52,9 +52,9 @@ const FormAddTransactions: React.FC<IForm> = () => {
 
     const handleSubmit = async ( event: React.FormEvent ) => {
         event.preventDefault();
-        const { userDocument, amount } = transactions;
+        const { document, amount } = transactions;
 
-        if ( userDocument && amount ) {
+        if ( document && amount ) {
             const response = (await requestData<IStateTransactions>(process.env.NEXT_PUBLIC_API_URL_TRANSACTIONS ?? '', "POST", transactions)).message;
             alert(response);
             clearForm();
@@ -76,11 +76,11 @@ const FormAddTransactions: React.FC<IForm> = () => {
                 </div>
                 <div>
                     <Input
-                        name="userDocument"
-                        id="userDocument"
+                        name="document"
+                        id="document"
                         placeHolder="Documento del Usuario"
-                        arialLabel="userDocument"
-                        value={transactions?.userDocument ?? ''}
+                        arialLabel="document"
+                        value={transactions?.document ?? ''}
                         onChange={e => handleChange(e)}
                         className={style.ContainerInput}
                         classInput={style.Input}

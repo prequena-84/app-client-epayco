@@ -10,3 +10,5 @@ export default function Home() {
     </section>
   );
 };
+
+// Quede en contenectarlo a la base de datos y crear el metodo para serializarlo en Base64
