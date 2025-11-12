@@ -40,7 +40,7 @@ const TableUsers:React.FC<IDataUsers> = ({ dataUsers }) => {
                                     {item.Celular}
                                 </td>
                                 <td key={`balance-${index}`}>
-                                    {item.Saldo?.toFixed(2)}
+                                    {item.Saldo}
                                 </td>
                             </tr>
                         ))}       

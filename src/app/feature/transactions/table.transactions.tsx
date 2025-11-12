@@ -42,7 +42,7 @@ const TableTransactions:React.FC<IDataTransactions> = ({ dataTransactions }) => 
                                     {transactions["Tipo Transaccion"]}
                                 </td>
                                 <td key={`amount-${index}`}>
-                                    {transactions.Monto ?? 0}
+                                    {transactions.Monto}
                                 </td>
                                 <td key={`state-${index}`}>
                                     {transactions.Estado}

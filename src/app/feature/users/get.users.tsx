@@ -7,12 +7,13 @@ import TableUsers from "./table.users";
 import type { IUser } from "./interfaces/users.interfaces";
 
 const GetUsers = () => {
-    const [ data, setData ] = useState<IUser[]>([]);
+    const [ data, setData ] = useState<IUser[] | null>(null);
 
     useEffect(() => {
         const getData = async () => {
-            const response:IUser[] = (await requestData<IUser[]>(process.env.NEXT_PUBLIC_API_URL_USERS ?? '', "GET")).data;
-            setData(response);
+            const users = (await requestData<IUser[] | null>(process.env.NEXT_PUBLIC_API_URL_USERS ?? '')).data;
+            console.log(users)
+            setData(users);
         };
 
         getData();

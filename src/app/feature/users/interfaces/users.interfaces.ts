@@ -7,7 +7,7 @@ interface IUser {
 }
 
 interface IDataUsers extends IUser{
-    dataUsers?:IUser[];
+    dataUsers?:IUser[] | null;
 }
 
 export type {
