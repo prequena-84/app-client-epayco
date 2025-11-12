@@ -1,6 +1,6 @@
 # Base stage con dependencias comunes
 FROM node:22.21.1-slim AS base
-WORKDIR /
+WORKDIR /app
 COPY package*.json ./
 COPY . .
 
@@ -10,7 +10,7 @@ ENV NODE_ENV=development
 RUN npm install
 COPY .env.dev .env
 EXPOSE 3000 
-CMD ["npx", "next", "dev", "-H", "0.0.0.0"]
+CMD ["npx", "next", "dev"]
 
 # Stage de builder para producción
 FROM node:22.21.1 AS builder

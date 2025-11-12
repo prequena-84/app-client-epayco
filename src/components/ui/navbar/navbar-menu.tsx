@@ -1,5 +1,7 @@
+'use client'
+
 import React, { useEffect, useState } from "react";
-import Link from "next/link";
+import Link from 'next/link'
 
 import type { INavBar, IMenu  } from "@/types/html.interfaces";
 
@@ -67,7 +69,7 @@ const NavBar: React.FC<INavBar> = ( {titleBrand="Menu", titleNavbar = "Menu"} ) 
                 </div>
             </div>
         </nav>
-    );
+    )
 };
 
 export default NavBar;

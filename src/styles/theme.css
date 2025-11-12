@@ -26,12 +26,12 @@ body {
 }
 
 /* Asegura que esté por encima del contenido */
-/*.navbar {
+.navbar {
   z-index: 1050; 
-}*/
+}
 
 /* Altura del navbar */
-/*.main-content {
+.main-content {
   margin-top: 50px; 
   padding:    1rem;
-}*/
+}

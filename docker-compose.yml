@@ -12,8 +12,10 @@
       networks:
         - ePayco-network
       volumes:
-        - ./src:/src
-        - ./package*.json:/package*.json
+        ##- ./src:/src
+        ##- ./package*.json:/package*.json
+        - ./:/app
+        - /app/node_modules
       restart: unless-stopped
 
     production:

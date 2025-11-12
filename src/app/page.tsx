@@ -1,7 +1,9 @@
+'use client'
+
 export default function Home() {
   return (
-    <>
-      <h1> hola desde docker prueba </h1>
-    </>
+    <section className="main-content">
+      <h1>Historial de Transacciones</h1>
+    </section>
   );
 };
