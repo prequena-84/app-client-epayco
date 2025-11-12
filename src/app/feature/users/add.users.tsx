@@ -1,10 +1,12 @@
 'use client'
 
-import React, { useState } from "react";
+import React, { use, useState } from "react";
 import BtnOutLine from "@/components/ui/botton/btn-outline";
 import BtnLine from "@/components/ui/botton/btn-line";
 import Input from "@/components/ui/input/input";
 import requestData from "@/services/request.data.services";
+import serializationBase64 from "@/utils/serialization.base64";
+import deserializationBase64 from "@/utils/deserialization.base64";
 import style from "@/app/feature/users/styles/users.create.module.css"
 
 import type { IForm } from "@/types/html.interfaces";
@@ -13,33 +15,37 @@ import type { IUser } from "./interfaces/users.interfaces";
 const FormAddUsers: React.FC<IForm> = () => {
 
     const [ users, setUsers ] = useState<IUser>({
-        document:0,
+        document:'',
         name:'',
         email:'',
         phone:'',
+        balance:serializationBase64('0'),
     });
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
 
-        setUsers((prevData):IUser => ({
+        setUsers(prevData=> ({
             ...prevData,
-            [name]:value
+            [name]:serializationBase64(value)
         }));
     };
 
     const clearForm = () => {
         setUsers({
-            document:0,
+            document:'',
             name:'',
             email:'',
             phone:'',
+            balance:serializationBase64('0'),
         });
     };
 
     const handlerSubmit = async ( event: React.FormEvent ) => {
         event.preventDefault();
         const { document, name, email, phone } = users;
+
+        console.log('revision de body serializado', users );
 
         if ( document && name && email && phone ) {
             const response = await requestData<IUser>(process.env.NEXT_PUBLIC_API_URL_USERS ?? "", "POST", users);
@@ -60,7 +66,7 @@ const FormAddUsers: React.FC<IForm> = () => {
                         id="document"
                         placeHolder="Documento"
                         arialLabel="document"
-                        value={users.document ?? 0}
+                        value={deserializationBase64(users.document ?? '')}
                         onChange={(e:React.ChangeEvent<HTMLInputElement>) => handleChange(e)}
                         className={style.ContainerInput}
                         classInput={style.Input}
@@ -73,8 +79,8 @@ const FormAddUsers: React.FC<IForm> = () => {
                         id="name"
                         placeHolder="Nombre"
                         arialLabel="name"
-                        value={users.name ?? ''}
-                        onChange={(e:React.ChangeEvent<HTMLInputElement>) => handleChange(e)}
+                        value={deserializationBase64(users.name ?? '')}
+                        onChange={e => handleChange(e)}
                         className={style.ContainerInput}
                         classInput={style.Input}
                     />
@@ -86,8 +92,8 @@ const FormAddUsers: React.FC<IForm> = () => {
                         type="email"
                         placeHolder="Correo"
                         arialLabel="email"
-                        value={users.email ?? ''}
-                        onChange={(e:React.ChangeEvent<HTMLInputElement>) => handleChange(e)}
+                        value={deserializationBase64(users.email ?? '')}
+                        onChange={e => handleChange(e)}
                         className={style.ContainerInput}
                         classInput={style.Input}
                     />                   
@@ -98,8 +104,8 @@ const FormAddUsers: React.FC<IForm> = () => {
                         id="phone"
                         placeHolder="Celular"
                         arialLabel="phone"
-                        value={users.phone ?? ''}
-                        onChange={(e:React.ChangeEvent<HTMLInputElement>) => handleChange(e)}
+                        value={deserializationBase64(users.phone ?? '')}
+                        onChange={e => handleChange(e)}
                         className={style.ContainerInput}
                         classInput={style.Input}
                     />                    

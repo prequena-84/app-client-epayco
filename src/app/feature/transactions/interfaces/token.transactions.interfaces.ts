@@ -1,5 +1,5 @@
 export interface IToken {
-    document:number;
+    document:string;
     id: string;
     token?: string;
 }

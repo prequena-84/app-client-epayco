@@ -1,9 +1,9 @@
 interface IUser {
-    document?:number;
+    document?:string;
     name?:string;
     email?:string;
     phone?:string
-    balance?:number;
+    balance?:string;
 }
 
 interface IDataUsers extends IUser{
