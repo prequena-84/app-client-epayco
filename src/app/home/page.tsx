@@ -1,10 +1,9 @@
+'use client'
 
 export default function Home() {
-    return (
-        <>
-            <div>
-                Home prueba
-            </div>
-        </>
-    );
+  return (
+    <section className="main-content">
+      <h1>Historial de Transacciones</h1>
+    </section>
+  );
 };

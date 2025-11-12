@@ -8,7 +8,7 @@ COPY . .
 FROM base AS development
 ENV NODE_ENV=development
 RUN npm install
-COPY .env.dev .env
+COPY .env.development .env
 EXPOSE 3000 
 CMD ["npx", "next", "dev"]
 
@@ -20,7 +20,7 @@ RUN npm install --omit=optional
 COPY tsconfig.json ./
 COPY src ./src
 COPY public ./public
-COPY .env.prod .env
+COPY .env.production .env
 RUN npm run build
 
 # Stage final de producción

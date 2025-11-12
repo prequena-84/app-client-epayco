@@ -1,0 +1,28 @@
+.Form {
+    flex:            1.5;
+    display:         flex;
+    justify-content: center;
+    align-items:     center;
+    padding:         1.5rem ;
+    background-color: var( --colorBlanco );
+}
+
+.Fieldset {
+    width: 30vw;
+}
+
+.Input {
+    margin-top: 1rem;
+}
+
+.InputUserName, .InputPassword {
+    background-color: var( --fondoForm ) !important;
+}
+
+.BtnCreate {
+    width: 14vw;
+}
+
+.BtnClear {
+    width: 14vw;
+}
