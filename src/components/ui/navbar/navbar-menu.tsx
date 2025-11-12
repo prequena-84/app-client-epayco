@@ -21,7 +21,7 @@ const NavBar: React.FC<INavBar> = ( {titleBrand="Menu", titleNavbar = "Menu"} ) 
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
             <div className="container-fluid">
-                <a className="navbar-brand" href="#">
+                <a className="navbar-brand" href="/home">
                     {titleBrand}
                 </a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">

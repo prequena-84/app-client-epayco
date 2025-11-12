@@ -1,7 +1,7 @@
 import React from "react";
 import type { ISelect } from "@/types/html.interfaces";
 
-const SelectTipoTransaccion: React.FC<ISelect> = ({
+const SelectTypeTransactions: React.FC<ISelect> = ({
   name, 
   className, 
   value, 
@@ -22,4 +22,4 @@ const SelectTipoTransaccion: React.FC<ISelect> = ({
   );
 };
 
-export default SelectTipoTransaccion;
+export default SelectTypeTransactions;

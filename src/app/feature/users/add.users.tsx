@@ -1,9 +1,11 @@
+'use client'
+
 import React, { useState } from "react";
 import BtnOutLine from "@/components/ui/botton/btn-outline";
 import BtnLine from "@/components/ui/botton/btn-line";
 import Input from "@/components/ui/input/input";
 import requestData from "@/services/request.data.services";
-import style from "@/app/feature/users/styles/users.create.users.module.css"
+import style from "@/app/feature/users/styles/users.create.module.css"
 
 import type { IForm } from "@/types/html.interfaces";
 import type { IUser } from "./interfaces/users.interfaces";
@@ -60,8 +62,8 @@ const FormAddUsers: React.FC<IForm> = () => {
                         arialLabel="document"
                         value={users.document ?? 0}
                         onChange={(e:React.ChangeEvent<HTMLInputElement>) => handleChange(e)}
-                        className={style.Input}
-                        classInput={style.inputUserName}
+                        className={style.ContainerInput}
+                        classInput={style.Input}
                     />
                 </div>
                 <div>
@@ -73,8 +75,8 @@ const FormAddUsers: React.FC<IForm> = () => {
                         arialLabel="name"
                         value={users.name ?? ''}
                         onChange={(e:React.ChangeEvent<HTMLInputElement>) => handleChange(e)}
-                        className={style.Input}
-                        classInput={style.InputPassword}
+                        className={style.ContainerInput}
+                        classInput={style.Input}
                     />
                 </div>
                 <div>
@@ -86,8 +88,8 @@ const FormAddUsers: React.FC<IForm> = () => {
                         arialLabel="email"
                         value={users.email ?? ''}
                         onChange={(e:React.ChangeEvent<HTMLInputElement>) => handleChange(e)}
-                        className={style.Input}
-                        classInput={style.InputUserName}
+                        className={style.ContainerInput}
+                        classInput={style.Input}
                     />                   
                 </div>
                 <div>
@@ -98,11 +100,11 @@ const FormAddUsers: React.FC<IForm> = () => {
                         arialLabel="phone"
                         value={users.phone ?? ''}
                         onChange={(e:React.ChangeEvent<HTMLInputElement>) => handleChange(e)}
-                        className={style.Input}
-                        classInput={style.InputUserName}
+                        className={style.ContainerInput}
+                        classInput={style.Input}
                     />                    
                 </div>
-                <div className={""}>
+                <div className={style.ContainerBtn}>
                     <BtnOutLine 
                         key="add"
                         text={"Registrar"}

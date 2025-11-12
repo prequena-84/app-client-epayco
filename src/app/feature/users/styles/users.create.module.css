@@ -11,12 +11,19 @@
     width: 30vw;
 }
 
-.Input {
+.ContainerInput {
     margin-top: 1rem;
 }
 
-.InputUserName, .InputPassword {
+.Input {
     background-color: var( --fondoForm ) !important;
+}
+
+.ContainerBtn {
+    display:         flex;
+    justify-content: space-around;
+    align-items:     center;
+    margin-top:      1rem;;
 }
 
 .BtnCreate {

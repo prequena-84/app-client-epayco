@@ -1,7 +1,7 @@
 'use client'
 import GetUsers from "@/app/feature/users/get.users";
 
-export default function Home() {
+export default function Users() {
   return (
     <section className="main-content">
       <GetUsers/>
