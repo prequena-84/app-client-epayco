@@ -45,8 +45,6 @@ const FormAddUsers: React.FC<IForm> = () => {
         event.preventDefault();
         const { document, name, email, phone } = users;
 
-        console.log('revision de body serializado', users );
-
         if ( document && name && email && phone ) {
             const response = await requestData<IUser>(process.env.NEXT_PUBLIC_API_URL_USERS ?? "", "POST", users);
             alert(response.message);

@@ -7,16 +7,16 @@ import BtnLine from "@/components/ui/botton/btn-line";
 import Input from "@/components/ui/input/input";
 import SelectTypeTransactions from "@/components/ui/select/select-tipo";
 import style from "@/app/feature/transactions/styles/transactions.create.module.css"
+import serializationBase64 from "@/utils/serialization.base64";
 
 import type { IForm } from "@/types/html.interfaces";
 import type { IStateTransactions } from "./interfaces/state.transactions.interfaces";
 
 const FormAddTransactions: React.FC<IForm> = () => {
-
     const [ transactions, setTransactions ] = useState<IStateTransactions>({
-        document:0,
+        document:'',
         type: 'recarga',
-        amount: 0,
+        amount: '',
         status: 'confirmada',
         phone:'',
     });
@@ -26,7 +26,7 @@ const FormAddTransactions: React.FC<IForm> = () => {
 
         setTransactions( prevData  => ({
             ...prevData,
-            [name]:value,
+            [name]: value,
             status: value === 'recarga' ? 'confirmada' : 'pendiente',
         }));
     };
@@ -42,24 +42,33 @@ const FormAddTransactions: React.FC<IForm> = () => {
 
     const clearForm = () => {
         setTransactions({
-            document:0,
+            document:'',
             type:'recarga',
-            amount:0,
+            amount:'',
             phone:'',
-            status:"confirmada",
+            status:'confirmada',
         });
     };
 
     const handleSubmit = async ( event: React.FormEvent ) => {
         event.preventDefault();
-        const { document, amount } = transactions;
+        const { document, type, status , amount } = transactions;
 
         if ( document && amount ) {
-            const response = (await requestData<IStateTransactions>(process.env.NEXT_PUBLIC_API_URL_TRANSACTIONS ?? '', "POST", transactions)).message;
+
+            const transactionsBase64 = {
+                document:serializationBase64(document),
+                amount: serializationBase64(amount),
+                type: serializationBase64(type ?? serializationBase64('recarga')),
+                status: serializationBase64(status ?? serializationBase64('confirmada')),
+            };
+
+            const response = (await requestData<IStateTransactions>(process.env.NEXT_PUBLIC_API_URL_TRANSACTIONS ?? '', "POST", transactionsBase64)).message;
             alert(response);
             clearForm();
-        } else {
-            alert('Por favor ingresa documento de usuario y monto.')
+            
+        }  else {
+            alert('Por favor ingresa documento de usuario y monto.');
         };
     };
 
@@ -126,7 +135,7 @@ const FormAddTransactions: React.FC<IForm> = () => {
                         className={style.ContainerInput}
                         classInput={style.Input}
                         disabled={true}
-                        />
+                    />
                 </div>}
                 <div className={style.ContainerBtn}>
                     <BtnOutLine 

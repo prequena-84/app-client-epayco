@@ -13,7 +13,6 @@ const GetTransactions = () => {
         const data = async () => {
             const data = (await requestData<IReportingTransactions[]>(process.env.NEXT_PUBLIC_API_URL_REPORTING ?? '')).data;
             setTransactions(data);
-            console.log(data)
         };
 
         data();

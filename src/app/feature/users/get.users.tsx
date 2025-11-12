@@ -12,7 +12,6 @@ const GetUsers = () => {
     useEffect(() => {
         const getData = async () => {
             const users = (await requestData<IUser[] | null>(process.env.NEXT_PUBLIC_API_URL_USERS ?? '')).data;
-            console.log(users)
             setData(users);
         };
 

@@ -1,9 +1,9 @@
 export interface ITransactions {
     id?:string;
     document?:string;
-    type?:'recarga'|'pago';
-    amount?:number ;
-    status?:'pendiente'|'confirmada';
+    type?:'recarga'|'pago' | string;
+    amount?:string ;
+    status?:'pendiente'|'confirmada' | string;
     tokenConfirmation?:string;
-    sessionExp?:number;
+    sessionExp?:string;
 }
