@@ -4,7 +4,7 @@
         "submenu":[
             {
                 "label": "Inicio",
-                "link": "/"
+                "link": "/home"
             }
         ]
     },
@@ -13,11 +13,11 @@
         "submenu":[
             {
                 "label": "Registro",
-                "link": "/add-users"
+                "link": "/home/users/add"
             },
             {
                 "label": "Consulta",
-                "link": "/get-users"
+                "link": "/home/users"
             }
         ]
     },

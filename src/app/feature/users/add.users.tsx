@@ -8,7 +8,7 @@ import style from "@/app/feature/users/styles/users.create.users.module.css"
 import type { IForm } from "@/types/html.interfaces";
 import type { IUser } from "./interfaces/users.interfaces";
 
-const FormCreateUsers: React.FC<IForm> = () => {
+const FormAddUsers: React.FC<IForm> = () => {
 
     const [ users, setUsers ] = useState<IUser>({
         document:0,
@@ -58,7 +58,7 @@ const FormCreateUsers: React.FC<IForm> = () => {
                         id="document"
                         placeHolder="Documento"
                         arialLabel="document"
-                        value={users.document}
+                        value={users.document ?? 0}
                         onChange={(e:React.ChangeEvent<HTMLInputElement>) => handleChange(e)}
                         className={style.Input}
                         classInput={style.inputUserName}
@@ -71,7 +71,7 @@ const FormCreateUsers: React.FC<IForm> = () => {
                         id="name"
                         placeHolder="Nombre"
                         arialLabel="name"
-                        value={users.name}
+                        value={users.name ?? ''}
                         onChange={(e:React.ChangeEvent<HTMLInputElement>) => handleChange(e)}
                         className={style.Input}
                         classInput={style.InputPassword}
@@ -84,7 +84,7 @@ const FormCreateUsers: React.FC<IForm> = () => {
                         type="email"
                         placeHolder="Correo"
                         arialLabel="email"
-                        value={users.email}
+                        value={users.email ?? ''}
                         onChange={(e:React.ChangeEvent<HTMLInputElement>) => handleChange(e)}
                         className={style.Input}
                         classInput={style.InputUserName}
@@ -96,7 +96,7 @@ const FormCreateUsers: React.FC<IForm> = () => {
                         id="phone"
                         placeHolder="Celular"
                         arialLabel="phone"
-                        value={users.phone}
+                        value={users.phone ?? ''}
                         onChange={(e:React.ChangeEvent<HTMLInputElement>) => handleChange(e)}
                         className={style.Input}
                         classInput={style.InputUserName}
@@ -124,4 +124,4 @@ const FormCreateUsers: React.FC<IForm> = () => {
     );
 };
 
-export default FormCreateUsers;
+export default FormAddUsers;
