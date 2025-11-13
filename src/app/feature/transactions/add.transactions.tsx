@@ -7,7 +7,7 @@ import BtnLine from "@/components/ui/botton/btn-line";
 import Input from "@/components/ui/input/input";
 import SelectTypeTransactions from "@/components/ui/select/select-tipo";
 import style from "@/app/feature/transactions/styles/transactions.create.module.css"
-import serializationBase64 from "@/utils/serialization.base64";
+import codeBase64 from "@/utils/code.base64";
 
 import type { IForm } from "@/types/html.interfaces";
 import type { IStateTransactions } from "./interfaces/state.transactions.interfaces";
@@ -57,14 +57,14 @@ const FormAddTransactions: React.FC<IForm> = () => {
         if ( document && amount ) {
 
             const transactionsBase64 = {
-                document:serializationBase64(document),
-                amount: serializationBase64(amount),
-                type: serializationBase64(type ?? serializationBase64('recarga')),
-                status: serializationBase64(status ?? serializationBase64('confirmada')),
+                document:codeBase64(document),
+                amount: codeBase64(amount),
+                type: codeBase64(type ?? codeBase64('recarga')),
+                status: codeBase64(status ?? codeBase64('confirmada')),
             };
 
-            const response = (await requestData<IStateTransactions>(process.env.NEXT_PUBLIC_API_URL_TRANSACTIONS ?? '', "POST", transactionsBase64)).message;
-            alert(response);
+            const { message } = await requestData<IStateTransactions>(process.env.NEXT_PUBLIC_API_URL_TRANSACTIONS ?? '', "POST", transactionsBase64);
+            alert(message);
             clearForm();
             
         }  else {

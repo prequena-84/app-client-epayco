@@ -1,12 +1,12 @@
 'use client'
 
-import React, { use, useState } from "react";
+import React, { useState } from "react";
 import BtnOutLine from "@/components/ui/botton/btn-outline";
 import BtnLine from "@/components/ui/botton/btn-line";
 import Input from "@/components/ui/input/input";
 import requestData from "@/services/request.data.services";
-import serializationBase64 from "@/utils/serialization.base64";
-import deserializationBase64 from "@/utils/deserialization.base64";
+import codeBase64 from "@/utils/code.base64";
+import decodeBase64 from "@/utils/decode.base64";
 import style from "@/app/feature/users/styles/users.create.module.css"
 
 import type { IForm } from "@/types/html.interfaces";
@@ -19,7 +19,7 @@ const FormAddUsers: React.FC<IForm> = () => {
         name:'',
         email:'',
         phone:'',
-        balance:serializationBase64('0'),
+        balance:codeBase64('0'),
     });
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,7 +27,7 @@ const FormAddUsers: React.FC<IForm> = () => {
 
         setUsers(prevData=> ({
             ...prevData,
-            [name]:serializationBase64(value)
+            [name]:codeBase64(value)
         }));
     };
 
@@ -37,7 +37,7 @@ const FormAddUsers: React.FC<IForm> = () => {
             name:'',
             email:'',
             phone:'',
-            balance:serializationBase64('0'),
+            balance:codeBase64('0'),
         });
     };
 
@@ -46,10 +46,13 @@ const FormAddUsers: React.FC<IForm> = () => {
         const { document, name, email, phone } = users;
 
         if ( document && name && email && phone ) {
-            const response = await requestData<IUser>(process.env.NEXT_PUBLIC_API_URL_USERS ?? "", "POST", users);
-            alert(response.message);
+
+            const { message } = await requestData<IUser>(process.env.NEXT_PUBLIC_API_URL_USERS ?? "", "POST", users);
+            alert(message);
             clearForm();
+
         } else {
+
             alert('Por favor ingrese todos los datos del "Usuario" para completar el registro')
         };
     };
@@ -64,8 +67,8 @@ const FormAddUsers: React.FC<IForm> = () => {
                         id="document"
                         placeHolder="Documento"
                         arialLabel="document"
-                        value={deserializationBase64(users.document ?? '')}
-                        onChange={(e:React.ChangeEvent<HTMLInputElement>) => handleChange(e)}
+                        value={decodeBase64(users.document ?? '')}
+                        onChange={e => handleChange(e)}
                         className={style.ContainerInput}
                         classInput={style.Input}
                     />
@@ -77,7 +80,7 @@ const FormAddUsers: React.FC<IForm> = () => {
                         id="name"
                         placeHolder="Nombre"
                         arialLabel="name"
-                        value={deserializationBase64(users.name ?? '')}
+                        value={decodeBase64(users.name ?? '')}
                         onChange={e => handleChange(e)}
                         className={style.ContainerInput}
                         classInput={style.Input}
@@ -90,7 +93,7 @@ const FormAddUsers: React.FC<IForm> = () => {
                         type="email"
                         placeHolder="Correo"
                         arialLabel="email"
-                        value={deserializationBase64(users.email ?? '')}
+                        value={decodeBase64(users.email ?? '')}
                         onChange={e => handleChange(e)}
                         className={style.ContainerInput}
                         classInput={style.Input}
@@ -102,7 +105,7 @@ const FormAddUsers: React.FC<IForm> = () => {
                         id="phone"
                         placeHolder="Celular"
                         arialLabel="phone"
-                        value={deserializationBase64(users.phone ?? '')}
+                        value={decodeBase64(users.phone ?? '')}
                         onChange={e => handleChange(e)}
                         className={style.ContainerInput}
                         classInput={style.Input}

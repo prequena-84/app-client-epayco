@@ -1,6 +1,7 @@
 'use client'
 
 import React from "react";
+
 import type { IDataTransactions } from "./interfaces/transactions.report.interfaces";
 
 const TableTransactions:React.FC<IDataTransactions> = ({ dataTransactions }) => {

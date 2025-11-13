@@ -1,3 +1,5 @@
+'use client'
+
 import React from "react";
 
 import type { IDataUsers } from "./interfaces/users.interfaces";

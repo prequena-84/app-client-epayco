@@ -1,11 +1,12 @@
 @import "tailwindcss";
 
-@theme {
+/*No se trabajo con TAILWIND*/
+/*@theme {*/
   /*--*: initial; */ /*Metodo para modificar y crear variables desde Cero*/           
-  --color-singIn:    #38040e/*#6a040f*/;  /*Se agrega como variable parecido al :root pero en tailwind*/
-  --color-logIn:     #231942;
-  --color-formLogIn: theme(color.violet.100);
-}
+  /*--color-singIn:*/  /*#38040e/*#6a040f;*/  /*Se agrega como variable parecido al :root pero en tailwind*/
+  /*--color-logIn:     #231942;*/
+  /*--color-formLogIn: theme(color.violet.100);*/
+/*}*/
 
 * {
     margin:     0;

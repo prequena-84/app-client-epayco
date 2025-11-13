@@ -1,4 +1,7 @@
+'use client'
+
 import React from "react";
+
 import type { ISelect } from "@/types/html.interfaces";
 
 const SelectTypeTransactions: React.FC<ISelect> = ({

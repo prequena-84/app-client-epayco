@@ -5,7 +5,7 @@ export default async function requestData<TResponse, TRequestBody = TResponse> (
     method: TMethod = 'GET', 
     body?: TRequestBody, 
     token?: TToken,
-):Promise<IFetch<TResponse> | {data:null, message:string}> {
+):Promise<IFetch<TResponse | []> | {data:null, message:string}> {
     try {
 
         if ( !uri ) throw new Error('URI no encontrada');
@@ -18,8 +18,9 @@ export default async function requestData<TResponse, TRequestBody = TResponse> (
             body: method === 'GET' ? undefined : JSON.stringify(body),
         });
 
+
+        if ( !response.ok ) console.error('Error en la red, datos o la solicitud falló');
         const data = await response.json();
-        if ( !response.ok ) throw new Error(data.message.message || 'Error en la red, datos o la solicitud falló');
 
         return {
             data: data.data,
@@ -27,9 +28,8 @@ export default async function requestData<TResponse, TRequestBody = TResponse> (
         };
 
     } catch(err) {
-        console.error('error en peticion', err);
         return {
-            data:null,
+            data:[],
             message:`error en petición: ${err}`,
         };
     };

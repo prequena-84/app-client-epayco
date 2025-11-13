@@ -1,3 +1,5 @@
+'use client'
+
 import React from "react";
 
 import type { IInputGroupText } from "@/types/html.interfaces";

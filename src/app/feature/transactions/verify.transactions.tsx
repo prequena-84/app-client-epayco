@@ -1,19 +1,20 @@
+'use client'
+
 import React, { useState } from "react";
 import requestData from "@/services/request.data.services";
 import BtnOutLine from "@/components/ui/botton/btn-outline";
 import BtnLine from "@/components/ui/botton/btn-line";
 import Input from "@/components/ui/input/input";
-import style from "@/app/feature/transactions/styles/transactionns.verify.module.css"
+import style from "@/app/feature/transactions/styles/transactionns.verify.module.css";
+import codeBase64 from "@/utils/code.base64";
 
 import type { IForm } from "@/types/html.interfaces";
 import type { IToken } from "./interfaces/token.transactions.interfaces";
 
-//FormAddTransactions
-
 const FormVerifyTransactions: React.FC<IForm> = () => {
     const [ dataToken, setDataToken ] = useState<IToken>({
         token:'',
-        document:0,
+        document:'',
         id:'',  
     });
 
@@ -29,7 +30,7 @@ const FormVerifyTransactions: React.FC<IForm> = () => {
     const clearForm = () => {
         setDataToken({
             token:'',
-            document:0,
+            document:'',
             id:'',
         });
     };
@@ -39,11 +40,14 @@ const FormVerifyTransactions: React.FC<IForm> = () => {
         const { document, id, token } = dataToken;
 
         if ( document && id && token ) {
-            const body = { document, id };
-            const response = (await requestData<IToken>(process.env.NEXT_PUBLIC_API_URL_CONFIRMATION ?? '', "POST", body, token)).message;
-            alert(response);
+
+            const body = { document: codeBase64(document), id: codeBase64(id) };
+            const { message } = await requestData<IToken>(process.env.NEXT_PUBLIC_API_URL_CONFIRMATION ?? '', "POST", body, codeBase64(token));
+            alert(message);
             clearForm();
+
         } else {
+
             alert('Ingrese los datos del Documento, Id de la Transacción y Token para enviar la autorización de la transacción');
         };
     };
@@ -52,10 +56,13 @@ const FormVerifyTransactions: React.FC<IForm> = () => {
         const { document, id } = dataToken;
 
         if ( document && id ) {
-            const body = { document, id };       
-            const response = (await requestData<IToken>(process.env.NEXT_PUBLIC_API_URL_GET_TOKEN ?? '', "POST", body)).message; 
-            alert(response)
+
+            const body = { document: codeBase64(document), id: codeBase64(id) };
+            const { message } = await requestData<IToken>(`${process.env.NEXT_PUBLIC_API_URL_GET_TOKEN}/send-OTP`, "POST", body); 
+            alert(message)
+
         } else {
+
             alert('Ingrese los datos del Documento y Id de la Transacción para solicitar el token');
         };
     };
@@ -65,7 +72,7 @@ const FormVerifyTransactions: React.FC<IForm> = () => {
             <fieldset className={style.Fieldset}>
                 <legend>Confirmación de Pago</legend>
                 <div>
-                    <label htmlFor="document">Nro. de Transacción a confirmar</label>
+                    <label htmlFor="document">Nro. de Documento del Usuario</label>
                     <Input
                         name="document"
                         id="document"
