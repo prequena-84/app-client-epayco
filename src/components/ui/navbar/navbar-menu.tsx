@@ -16,12 +16,10 @@ const NavBar: React.FC<INavBar> = ( {titleBrand="Menu", titleNavbar = "Menu"} ) 
         .catch( err => console.error(err) );
     },[]);
 
-    // Queda pendiente agregar el boton para controlar el estado global cuando lo pase por aqui
-
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-top">
             <div className="container-fluid">
-                <a className="navbar-brand" href="/home">
+                <a className="navbar-brand" href="/">
                     {titleBrand}
                 </a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
