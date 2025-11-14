@@ -56,10 +56,9 @@ const FormVerifyTransactions: React.FC<IForm> = () => {
         const { document, id } = dataToken;
 
         if ( document && id ) {
-
             const body = { document: codeBase64(document), id: codeBase64(id) };
-            const { message } = await requestData<IToken>(`${process.env.NEXT_PUBLIC_API_URL_GET_TOKEN}/send-OTP`, "POST", body); 
-            alert(message)
+            const  data  = await requestData<IToken>(`${process.env.NEXT_PUBLIC_API_URL_GET_TOKEN}/send-OTP`, "POST", body); 
+            alert(data.message)
 
         } else {
 

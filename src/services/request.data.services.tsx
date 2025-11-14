@@ -1,11 +1,11 @@
-import type { TUri, TMethod, TToken, THeaders, IFetch } from "./request.data.services.types";
+import type { TUri, TMethod, TToken, THeaders, IFetchResponse } from "./request.data.services.types";
 
 export default async function requestData<TResponse, TRequestBody = TResponse> ( 
     uri: TUri, 
     method: TMethod = 'GET', 
     body?: TRequestBody, 
     token?: TToken,
-):Promise<IFetch<TResponse | []> | {data:null, message:string}> {
+):Promise<IFetchResponse<TResponse>> {
     try {
 
         if ( !uri ) throw new Error('URI no encontrada');
@@ -18,9 +18,15 @@ export default async function requestData<TResponse, TRequestBody = TResponse> (
             body: method === 'GET' ? undefined : JSON.stringify(body),
         });
 
+        const data = await response.json().catch(() => null);
 
-        if ( !response.ok ) console.error('Error en la red, datos o la solicitud falló');
-        const data = await response.json();
+        if ( !response.ok ) {
+            console.error(data?.message?.message as string)
+            return {
+                data: null,
+                message: (data?.message?.message as string) || 'Error en la solicitud',
+            };
+        };
 
         return {
             data: data.data,
@@ -29,7 +35,7 @@ export default async function requestData<TResponse, TRequestBody = TResponse> (
 
     } catch(err) {
         return {
-            data:[],
+            data:null,
             message:`error en petición: ${err}`,
         };
     };
